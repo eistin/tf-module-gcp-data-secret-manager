@@ -3,7 +3,7 @@ variable "project_id" {
   type        = string
 }
 
-variable "secret_name" {
-  type        = string
-  description = "Name of the secret manager version to retrieve"
+variable "secret_names" {
+  type        = list(string)
+  description = " list of secret names to fetch from Google Secret Manager"
 }

@@ -1,4 +1,9 @@
-data "google_secret_manager_secret_version" "user_password" {
-  project = var.project_id
-  secret  = var.secret_name
+locals {
+  secret_map = { for name in var.secret_names : name => name }
+}
+
+data "google_secret_manager_secret_version" "secrets" {
+  for_each = local.secret_map
+  project  = var.project_id
+  secret   = each.value
 }
